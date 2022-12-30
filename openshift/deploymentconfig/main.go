@@ -56,7 +56,7 @@ func main() {
 	deploymentName := "my-deployment"
 	namespace := "my-namespace"
 	// Creating a new DeploymentConfig
-	image := "docker.io/http:latest"
+	image := "docker.io/httpd:latest"
 	err = CreateDeploymentConfig(deploymentName, namespace, image, 1, client)
 	if err != nil {
 		log.Fatal(err)
