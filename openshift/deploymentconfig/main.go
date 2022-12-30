@@ -146,7 +146,7 @@ func ScaleDeploymentConfig(name, namespace string, scale int, client *v1.AppsV1C
 	fmt.Printf("Scaling DeploymentConfig `%s` in namespace `%s`\n", name, namespace)
 	replicas := uint32(scale)
 
-	payload := []patchUInt32Value{{
+	payload := []integerPatch{{
 		Op:    "replace",
 		Path:  "/spec/replicas",
 		Value: replicas,
@@ -157,7 +157,6 @@ func ScaleDeploymentConfig(name, namespace string, scale int, client *v1.AppsV1C
 	if err != nil {
 		err := fmt.Errorf("[x] Error Scaling DC Image: %v\n", err)
 		panic(err)
-		panic(err)
 	}
 
 	fmt.Printf("Successfully scaled deploymentconfig to %d replicas\n", replicas)
@@ -165,7 +164,7 @@ func ScaleDeploymentConfig(name, namespace string, scale int, client *v1.AppsV1C
 
 func UpdateDeploymentConfigImage(name, namespace, image string, client *v1.AppsV1Client) {
 	fmt.Printf("Updating DeploymentConfig `%s` in namespace `%s`\n", name, namespace)
-	payload := []integerPatch{{
+	payload := []stringPatch{{
 		Op:    "replace",
 		Path:  "/spec/template/spec/containers/0/image",
 		Value: image,
