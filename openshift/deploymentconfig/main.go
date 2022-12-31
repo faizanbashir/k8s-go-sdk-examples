@@ -108,6 +108,7 @@ func CreateDeploymentConfig(name, namespace, image string, replicas int32, clien
 							Image: image,
 							Ports: []corev1.ContainerPort{
 								{
+									Name: "http",
 									ContainerPort: 8080,
 									Protocol:      corev1.ProtocolTCP,
 								},
